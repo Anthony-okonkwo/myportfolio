@@ -1,121 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React from 'react';
+import './App.css'; // You can style this later!
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
+    <div className="portfolio-container">
+      {/* HEADER SECTION */}
+      <header className="header">
+        <h1>Anthony "TonyStark" Okonkwo</h1>
+        <h2>Full-Stack Developer | 3D Game Artist | Mechanical Engineer</h2>
+      </header>
+
+      {/* ABOUT SECTION */}
+      <section className="about-section">
+        <h3>About Me</h3>
+        <p>
+          I'm Anthony Okonkwo, and I'm passionate about being a full-stack programmer, game designer, and Mechanical Engineer. 
+        </p>
+        <p>
+          For me, it all comes down to a love for building things from scratch and solving problems. I enjoy the pure logic of writing backend code for web applications, the creative freedom of designing 3D game environments, and the hands-on reality of understanding how physical machines work. 
+        </p>
+        <p>
+          I strongly believe this mix of skills is exactly what is needed to change the energy sector. By combining my mechanical engineering foundation with modern software development, I want to build smart, data-driven applications that monitor physical systems, automate heavy industrial processes, and make energy operations much more efficient.
+        </p>
+        <p>
+          Currently, I am putting this into practice as a SIWES Intern at Chevron Nigeria Limited and a Full-Stack Developer at Cyberpurview, all while completing my Mechanical Engineering degree at UNIZIK.
+        </p>
       </section>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+      {/* PROJECTS SECTION */}
+      <section className="projects-section">
+        <h3>What I'm Building</h3>
+        
+        <div className="project-card">
+          <h4>Cyberpurview Platforms (SchoolOne & JobConcierge)</h4>
+          <p><strong>Stack:</strong> Next.js, NestJS, TypeScript, Supabase</p>
+          <p>Developing enterprise web applications with complex database authentication, API integrations, and 13-page dynamic RBAC dashboards.</p>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
+
+        <div className="project-card">
+          <h4>Lagos-Themed Multiplayer Racing Game</h4>
+          <p><strong>Stack:</strong> Unity, Blender, C#</p>
+          <p>A low-poly racing game featuring local Nigerian vehicles like the Keke Napep and Danfo. PC version includes split-screen multiplayer, while Android supports Wi-Fi multiplayer.</p>
+        </div>
+
+        <div className="project-card">
+          <h4>Engineering & Utilities</h4>
+          <p><strong>Tools:</strong> SolidWorks, Python, React</p>
+          <p>Built a semester/year CGPA Calculator for students. Also highly experienced in CAD modeling, 16-link mechanism synthesis, and fluid flow simulations.</p>
         </div>
       </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      {/* FOOTER / CONTACT */}
+      <footer className="footer">
+        <h3>Let's Connect</h3>
+        <p>I’m always open to collaborating on impactful projects, especially in tech-for-Africa, energy, or gaming.</p>
+        <p>
+          <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noreferrer">LinkedIn</a> | 
+          <a href="https://github.com/yourusername" target="_blank" rel="noreferrer"> GitHub</a>
+        </p>
+      </footer>
+    </div>
+  );
 }
 
-export default App
+export default App;
