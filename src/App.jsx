@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Terminal, ArrowRight } from 'lucide-react'; 
+import { ChevronDown, ChevronUp, Terminal, ArrowRight, Code, Gamepad2, Wrench } from 'lucide-react'; 
 import './App.css';
 
 function App() {
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
   const [portfolioRevealed, setPortfolioRevealed] = useState(false);
+
+  // Helper function for smooth scrolling to sections
+  const scrollToSection = (id) => {
+    // If the overlay is still up, dismiss it first
+    if (!portfolioRevealed) {
+      setPortfolioRevealed(true);
+    }
+    // Allow the overlay animation to finish before scrolling
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }, 400); 
+  };
 
   return (
     <div className={`portfolio-container ${portfolioRevealed ? 'scroll-enabled' : 'scroll-disabled'}`}>
@@ -14,15 +26,15 @@ function App() {
         
         {/* ✨ THE ACTUAL FLOATING CARD */}
         <div className="portfolio-hero-card">
-          <div className="entry-nav">
+          <header className="entry-nav">
             <span className="brand-logo">TonyStark.</span>
-            <div className="nav-links">
-              <span>Home</span>
-              <span>About</span>
-              <span>Projects</span>
-              <span>Contact</span>
-            </div>
-          </div>
+            <nav className="nav-links">
+              <button onClick={() => scrollToSection('home')} className="nav-btn">Home</button>
+              <button onClick={() => scrollToSection('about')} className="nav-btn">About</button>
+              <button onClick={() => scrollToSection('projects')} className="nav-btn">Projects</button>
+              <button onClick={() => scrollToSection('contact')} className="nav-btn">Contact</button>
+            </nav>
+          </header>
 
           <div className="entry-content">
             <div className="entry-text-side">
@@ -44,7 +56,7 @@ function App() {
                 </button>
                 <button 
                   className="btn-secondary" 
-                  onClick={() => setPortfolioRevealed(true)}
+                  onClick={() => scrollToSection('contact')}
                 >
                   Let's Talk
                 </button>
@@ -55,8 +67,9 @@ function App() {
               <div className="image-wrapper">
                 <img 
                   src="/anthony-portrait.jpg" 
-                  alt="Anthony Okonkwo" 
+                  alt="Anthony Okonkwo - Software Engineer" 
                   className="portrait-image"
+                  loading="lazy"
                 />
                 {/* Subtle digital overlay effect */}
                 <div className="image-overlay"></div>
@@ -66,24 +79,33 @@ function App() {
         </div>
       </div>
 
-      {/* 🧠 THE REST OF THE PORTFOLIO (Hidden underneath until overlay slides up) */}
-      <div className="main-content">
-        <section className="about-section max-width-wrapper">
+      {/* 🧠 THE REST OF THE PORTFOLIO */}
+      <main id="home" className="main-content">
+        
+        {/* 💻 ABOUT SECTION */}
+        <section id="about" className="about-section max-width-wrapper">
           <div 
             className={`about-card ${isAboutExpanded ? 'expanded' : ''}`}
-            onClick={() => setIsAboutExpanded(!isAboutExpanded)}
           >
-            <div className="about-card-header">
+            <div 
+              className="about-card-header"
+              onClick={() => setIsAboutExpanded(!isAboutExpanded)}
+              style={{ cursor: 'pointer' }}
+            >
               <div className="terminal-header">
                 <Terminal className="terminal-icon" size={24} />
                 <h3>System.out.println("About_Me");</h3>
               </div>
-              <button className="expand-btn">
+              <button 
+                className="expand-btn" 
+                aria-expanded={isAboutExpanded}
+                aria-label="Toggle About Section"
+              >
                 {isAboutExpanded ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
               </button>
             </div>
 
-            <div className="about-card-content">
+            <div className={`about-card-content ${isAboutExpanded ? 'content-visible' : 'content-hidden'}`}>
               <div className="about-grid">
                 <div className="about-text">
                   <p>
@@ -103,7 +125,7 @@ function App() {
                   </div>
                   <div className="stack-box red-border">
                     <h4>Engineering & CAD</h4>
-                    <p>SolidWorks, Python, PMKS+, Fluid Flow</p>
+                    <p>SolidWorks, Python, PMKS+, Fluid Flow Simulations</p>
                   </div>
                   <div className="stack-box black-border">
                     <h4>Game & 3D Dev</h4>
@@ -116,7 +138,7 @@ function App() {
         </section>
 
         {/* 🛠️ PROJECTS SECTION */}
-        <section className="projects-section max-width-wrapper">
+        <section id="projects" className="projects-section max-width-wrapper">
           <div className="section-header">
             <h3>Active Directives</h3>
             <div className="divider"></div>
@@ -125,7 +147,7 @@ function App() {
           <div className="project-grid">
             <div className="project-card">
               <div className="card-top">
-                <span className="project-category">Enterprise Web</span>
+                <span className="project-category"><Code size={14} className="category-icon"/> Enterprise Web</span>
                 <h4>Cyberpurview Platforms</h4>
               </div>
               <p className="project-desc">
@@ -138,7 +160,7 @@ function App() {
 
             <div className="project-card">
               <div className="card-top">
-                <span className="project-category">Game Dev</span>
+                <span className="project-category"><Gamepad2 size={14} className="category-icon"/> Game Dev</span>
                 <h4>Lagos-Themed Racing Game</h4>
               </div>
               <p className="project-desc">
@@ -151,7 +173,7 @@ function App() {
 
             <div className="project-card">
               <div className="card-top">
-                <span className="project-category">Engineering Tool</span>
+                <span className="project-category"><Wrench size={14} className="category-icon"/> Engineering Tool</span>
                 <h4>Advanced CGPA Engine</h4>
               </div>
               <p className="project-desc">
@@ -163,21 +185,21 @@ function App() {
             </div>
           </div>
         </section>
+      </main>
 
-        {/* 📡 FOOTER / CONTACT */}
-        <footer id="contact" className="footer-section">
-          <div className="footer-content max-width-wrapper">
-            <h2>Let's Build the Future</h2>
-            <p>Always open to collaborating on tech-for-Africa, energy automation, or game development.</p>
-            <div className="social-links">
-              <a href="https://linkedin.com/in/anthony-okonkwo-326717265" target="_blank" rel="noreferrer" className="social-btn">LinkedIn</a>
-              <a href="https://github.com/Anthony-okonkwo" target="_blank" rel="noreferrer" className="social-btn">GitHub</a>
-              <a href="https://wa.me/2348159088338" target="_blank" rel="noreferrer" className="social-btn whatsapp-btn">WhatsApp</a>
-            </div>
-            <p className="copyright">© {new Date().getFullYear()} Anthony Okonkwo. Engineered for precision.</p>
+      {/* 📡 FOOTER / CONTACT */}
+      <footer id="contact" className="footer-section">
+        <div className="footer-content max-width-wrapper">
+          <h2>Let's Build the Future</h2>
+          <p>Always open to collaborating on tech-for-Africa, energy automation, or game development.</p>
+          <div className="social-links">
+            <a href="https://linkedin.com/in/anthony-okonkwo-326717265" target="_blank" rel="noreferrer" className="social-btn">LinkedIn</a>
+            <a href="https://github.com/Anthony-okonkwo" target="_blank" rel="noreferrer" className="social-btn">GitHub</a>
+            <a href="https://wa.me/2348159088338" target="_blank" rel="noreferrer" className="social-btn whatsapp-btn">WhatsApp</a>
           </div>
-        </footer>
-      </div>
+          <p className="copyright">© {new Date().getFullYear()} Anthony Okonkwo. Engineered for precision.</p>
+        </div>
+      </footer>
     </div>
   );
 }
