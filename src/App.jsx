@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Terminal, ArrowRight, Code, Gamepad2, Wrench } from 'lucide-react'; 
 import './App.css';
+import portraitImg from './assets/anthony-portrait.jpg';
 
 function App() {
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
@@ -47,6 +48,8 @@ function App() {
               <p className="entry-description">
                 Merging mechanical engineering precision with modern software stacks. Building enterprise web platforms, rendering low-poly Nigerian environments, and synthesizing complex systems from scratch.
               </p>
+
+              
               <div className="entry-actions">
                 <button 
                   className="btn-primary" 
@@ -66,7 +69,7 @@ function App() {
             <div className="entry-image-side">
               <div className="image-wrapper">
                 <img 
-                  src="/anthony-portrait.jpg" 
+                  src={portraitImg} 
                   alt="Anthony Okonkwo - Software Engineer" 
                   className="portrait-image"
                   loading="lazy"
