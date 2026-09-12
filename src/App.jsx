@@ -28,7 +28,7 @@ function App() {
         {/* ✨ THE ACTUAL FLOATING CARD */}
         <div className="portfolio-hero-card">
           <header className="entry-nav">
-            <span className="brand-logo">TonyStark.</span>
+            <span className="brand-logo">TonyStark</span>
             <nav className="nav-links">
               <button onClick={() => scrollToSection('home')} className="nav-btn">Home</button>
               <button onClick={() => scrollToSection('about')} className="nav-btn">About</button>
@@ -37,25 +37,48 @@ function App() {
             </nav>
           </header>
 
-          <div className="entry-content">
-            <div className="entry-text-side">
+          <div className="entry-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '2rem', padding: '2rem 0' }}>
+            
+            {/* 📸 CIRCULAR IMAGE TOP */}
+            <div className="image-wrapper" style={{ width: '250px', height: '250px', borderRadius: '50%', overflow: 'hidden', border: '4px solid rgba(14, 165, 233, 0.2)', position: 'relative' }}>
+              <img 
+                src={portraitImg} 
+                alt="Anthony Okonkwo - Software Engineer" 
+                className="portrait-image"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                loading="lazy"
+              />
+              <div className="image-overlay" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent, rgba(15, 23, 42, 0.4))' }}></div>
+            </div>
+
+            {/* 📝 CENTERED TEXT BOTTOM */}
+            <div className="entry-text-side" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', maxWidth: '600px' }}>
               <h1 className="main-heading">
                 Hi, I'm Anthony Okonkwo
               </h1>
-              <h2 className="main-role text-sky-blue">
+              <h2 className="main-role text-sky-blue" style={{ marginBottom: '1.5rem' }}>
                 Software Engineer & 3D Artist
               </h2>
-              <p className="entry-description">
+              <p className="entry-description" style={{ marginBottom: '2rem' }}>
                 Merging mechanical engineering precision with modern software stacks. Building enterprise web platforms, rendering low-poly Nigerian environments, and synthesizing complex systems from scratch.
               </p>
 
-              
-              <div className="entry-actions">
+              {/* 🚀 WORK-IN-PROGRESS BADGE */}
+              <div className="wip-badge" style={{ marginBottom: '2rem', fontSize: '0.85rem', color: '#0ea5e9', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '8px 16px', background: 'rgba(14, 165, 233, 0.1)', borderRadius: '99px' }}>
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                </span>
+                Currently assembling this site. Join the build process.
+              </div>
+
+              {/* 🎯 ACTIONS */}
+              <div className="entry-actions" style={{ display: 'flex', justifyContent: 'center', gap: '1rem', width: '100%' }}>
                 <button 
                   className="btn-primary" 
                   onClick={() => setPortfolioRevealed(true)}
                 >
-                  Access Portfolio <ArrowRight className="btn-icon" size={18} />
+                  Explore My Dev Journey <ArrowRight className="btn-icon" size={18} />
                 </button>
                 <button 
                   className="btn-secondary" 
@@ -63,19 +86,6 @@ function App() {
                 >
                   Let's Talk
                 </button>
-              </div>
-            </div>
-
-            <div className="entry-image-side">
-              <div className="image-wrapper">
-                <img 
-                  src={portraitImg} 
-                  alt="Anthony Okonkwo - Software Engineer" 
-                  className="portrait-image"
-                  loading="lazy"
-                />
-                {/* Subtle digital overlay effect */}
-                <div className="image-overlay"></div>
               </div>
             </div>
           </div>
